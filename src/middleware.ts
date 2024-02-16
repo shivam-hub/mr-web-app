@@ -1,37 +1,52 @@
 import { NextRequest, NextResponse } from "next/server";
-// import { getToken } from "next-auth/jwt"
 
-
-// export async function middleware(req: NextRequest) {
+// export function middleware(req: NextRequest) {
 //     const path = req.nextUrl.pathname;
+//     const token = req.cookies.get('token')?.value || '';
 //     const isPublicPath = path === '/login';
 //     const url = req.nextUrl.clone()
 
-//     // const token = req.cookies.get('token')?.value || '';
-
-//     const token = await getToken({ req })
-//     const isAuth = !!token
-
-//     if (isPublicPath) {
-//         if (isAuth) {
-//             url.pathname = '/user_workbench'
-//             return NextResponse.redirect('/user_workbench');
+//     if(isPublicPath){
+//         if (token !== '') {
+//             url.pathname = '/user-workbench'
 //         }
-//         return null;
+//         else{
+//             url.pathname = '/login'
+//         }
+//         return NextResponse.redirect(url);
 //     }
-
-//     if (!isAuth) {
+//     if (token === '') {
 //         url.pathname = '/login'
 //         return NextResponse.redirect(url);
 //     }
 
-//     return null;
+//     return NextResponse.next();
 // }
 
+// import { NextRequest, NextResponse } from "next/server";
 
+// import { NextRequest, NextResponse } from "next/server";
 
+export function middleware(req: NextRequest) {
+    const path = req.nextUrl.pathname;
+    const token = req.cookies.get('token')?.value || '';
+    const isPublicPath = path === '/login';
+    const isWorkbenchPath = path === '/user-workbench' || path === '/doctor-workbench' || path === '/reports-workbench';
+    const url = req.nextUrl.clone();
 
+    if (isPublicPath && token !== '') {
+        url.pathname = '/user-workbench';
+        return NextResponse.redirect(url);
+    }
 
-export function middleware(req: NextRequest){
+    if (isWorkbenchPath && token === '') {
+        url.pathname = '/login';
+        return NextResponse.redirect(url);
+    }
 
+    return NextResponse.next();
 }
+
+export const config = {
+    matcher: ['/login', '/user-workbench', '/doctor-workbench', '/reports-workbench'],
+};

@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useEffect, useState } from "react";
-import { GetAllUsers } from "@/api-services/Users";
 import { UserCol, columns } from "./columns";
 import { DataTable } from "./data-table";
 import { Progress } from "@/components/ui/progress"
@@ -24,8 +23,8 @@ const UserWorkbench = () => {
             }, 500);
 
             try {
-                const users = await GetAllUsers();
-                setData(users);
+                const users = await fetch('api/users/getUser');
+                setData(await users.json());
                 setDataLoaded(true);
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -40,7 +39,6 @@ const UserWorkbench = () => {
     }, []); 
 
     if (!dataLoaded) {
-        console.log("Current progress:", progress);
         return <Progress value={progress} />;
     }
 

@@ -1,11 +1,20 @@
-async function GetAllReports() {
-    let token = "";
-    token = sessionStorage.getItem('token') ?? "";
-    if (!token) {
-        console.log("token")
-        return [];
+import { cookies } from "next/headers"; 
+
+export async function GET(request : Request){
+    const cookieStore = cookies();
+    const token = cookieStore.get('token')?.value ?? '';
+    
+    if(token == ''){
+        const res = {
+            success : true,
+            message: 'User not authenticated'
+        }
+        return new Response(JSON.stringify(res), {
+            status: 401
+        })
     }
-    try {
+
+    try{
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/Visits/getAllVisits`, {
             method: "GET",
             headers: {
@@ -17,10 +26,11 @@ async function GetAllReports() {
         });
 
         if (!res.ok) {
-            throw new Error("Failed to fetch users");
+            throw new Error("Failed to fetch reports");
         }
 
         const data = await res.json();
+
         const visits = data.map((user: any) => ({
             mrName: user.mrInfo?.name ?? '',
             doctorName: user.doctorInfo?.name ?? '',
@@ -30,11 +40,13 @@ async function GetAllReports() {
             visitedOn: user.visitedOn ?? null
         }));
 
-        return visits;
-
-    } catch (error) {
-        return [];
+        return new Response(JSON.stringify(visits), {
+            status:200
+        });
+    }
+    catch(err){
+        return new Response(JSON.stringify([]), {
+            status: 500
+        })
     }
 }
-
-export { GetAllReports }
