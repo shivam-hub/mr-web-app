@@ -2,7 +2,7 @@
 
 import { Cross2Icon } from "@radix-ui/react-icons"
 import { Table } from "@tanstack/react-table"
-
+import Link from "next/link";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { DataTableViewOptions } from "@/components/data-table-view-options"
@@ -10,6 +10,7 @@ import { DataTableViewOptions } from "@/components/data-table-view-options"
 import { priorities, statuses } from "./data"
 import { DataTableFacetedFilter } from "@/components/data-table-faceted-filter"
 
+import AddUserSheet from "@/components/sheets/user-workbench-add-sheet"
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
 }
@@ -56,7 +57,17 @@ export function DataTableToolbar<TData>({
         )}
       </div>
       <DataTableViewOptions table={table} />
-      
+      <div>
+      {/* <Button 
+        onClick={}
+       size="icon" 
+       className="rounded-full h-7 w-7 text-lg mx-4 font-medium">
+      <Link href=''>+</Link>
+      </Button> */}
+      <AddUserSheet/>
+      </div>
+
+
     </div>
   )
 }
