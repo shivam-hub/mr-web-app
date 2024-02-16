@@ -2,13 +2,12 @@
 
 import { Cross2Icon } from "@radix-ui/react-icons"
 import { Table } from "@tanstack/react-table"
-
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { DataTableViewOptions } from "@/app/user_workbench/data-table-view-options"
+import { DataTableViewOptions } from "@/components/data-table-view-options"
 
-import { priorities, statuses } from "./data"
-import { DataTableFacetedFilter } from "./data-table-faceted-filter"
+import { statuses } from "./data"
+import { DataTableFacetedFilter } from "@/components/data-table-faceted-filter"
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
@@ -23,25 +22,25 @@ export function DataTableToolbar<TData>({
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
         <Input
-          placeholder="Filter tasks..."
-          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+          placeholder="Doctor Name..."
+          value={(table.getColumn("doctorName")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("name")?.setFilterValue(event.target.value)
+            table.getColumn("doctorName")?.setFilterValue(event.target.value)
           }
           className="h-8 w-[150px] lg:w-[250px]"
         />
-        {table.getColumn("userId") && (
+        {table.getColumn("region") && (
           <DataTableFacetedFilter
-            column={table.getColumn("userId")}
-            title="User Id"
+            column={table.getColumn("region")}
+            title="Region"
             options={statuses}
           />
         )}
-        {table.getColumn("name") && (
+        {table.getColumn("speciality") && (
           <DataTableFacetedFilter
-            column={table.getColumn("name")}
-            title="Priority"
-            options={priorities}
+            column={table.getColumn("speciality")}
+            title="Speciality"
+            options={statuses}
           />
         )}
         {isFiltered && (

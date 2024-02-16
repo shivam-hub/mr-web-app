@@ -7,7 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 
 
 import * as z from "zod"
-import { DataTableColumnHeader } from "./data-table-column-headers";
+import { DataTableColumnHeader } from "@/components/data-table-column-headers";
 
 
 export type UserCol = z.infer<typeof userTableSchema>
@@ -39,7 +39,6 @@ export const columns: ColumnDef<UserCol>[] = [
     },
     {
         accessorKey: 'userId',
-        // header: "User Id",
         header: ({ column }) => (
             <DataTableColumnHeader column={column} title="User Id" />
           ),
@@ -64,7 +63,6 @@ export const columns: ColumnDef<UserCol>[] = [
               </div>
             )
           },
-        // header: 'Name'
     },
     {
         accessorKey: 'password',

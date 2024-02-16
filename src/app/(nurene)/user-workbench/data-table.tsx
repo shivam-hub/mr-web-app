@@ -25,7 +25,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-import { DataTablePagination } from "./data-table-pagination"
+import { DataTablePagination } from "@/components/data-table-pagination"
 import { DataTableToolbar } from "./data-table-toolbar"
 
 interface DataTableProps<TData, TValue> {
@@ -73,7 +73,7 @@ export function DataTable<TData, TValue>({
       <div className="rounded-md border">
         <Table>
           <TableHeader className="bg-green-400">
-            {table.getHeaderGroups().map((headerGroup) => (
+            { table && table.getHeaderGroups && table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
@@ -91,7 +91,7 @@ export function DataTable<TData, TValue>({
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            { table && table.getRowModel() && table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}

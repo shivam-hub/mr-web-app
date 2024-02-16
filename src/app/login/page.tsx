@@ -10,11 +10,12 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 import * as React from "react"
 import { cn } from "@/lib/utils";
+import { useRouter } from 'next/navigation';
 
 interface LoginFormProps extends React.HTMLAttributes<HTMLDivElement> { }
 type FormData = z.infer<typeof userAuthSchema>
 
-function Login({ className, ...props }: LoginFormProps) {
+function Login({ className }: LoginFormProps) {
 
     const {
         register,
@@ -24,29 +25,23 @@ function Login({ className, ...props }: LoginFormProps) {
         resolver: zodResolver(userAuthSchema),
     })
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
+    const router = useRouter();
 
     async function onLoginClicked(data: FormData) {
 
         setIsLoading(true);
 
-        const logInResult = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/Auth/login`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
+        const response = await fetch('/api/auth/login', {
+            method : 'POST',
+            body: JSON.stringify(data)
         })
+
+        const res = await response.json();
 
         setIsLoading(false);
 
-        if (!logInResult?.ok) {
-            return toast.error("Login failed!");
-        }
-
-        const res = await logInResult.json();
-
         if (res && res.token) {
-            sessionStorage.setItem('token', res.token)
+            router.replace('/user-workbench')
         }
     }
 
@@ -75,9 +70,6 @@ function Login({ className, ...props }: LoginFormProps) {
                         </div>
                     </form>
                 </CardContent>
-                {/* <CardFooter className="flex justify-center ">
-                    <button type="submit" className={cn(buttonVariants())} disabled={isLoading}>Log in</button>
-                </CardFooter> */}
             </Card>
         </div>
     )
