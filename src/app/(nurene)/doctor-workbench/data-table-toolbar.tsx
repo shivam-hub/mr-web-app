@@ -8,6 +8,7 @@ import { DataTableViewOptions } from "@/components/data-table-view-options"
 
 import { statuses } from "./data"
 import { DataTableFacetedFilter } from "@/components/data-table-faceted-filter"
+import AddDoctorSheet from "@/components/sheets/doctor-workbench-add-sheet"
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
@@ -55,6 +56,7 @@ export function DataTableToolbar<TData>({
         )}
       </div>
       <DataTableViewOptions table={table} />
+      <AddDoctorSheet/>
     </div>
   )
 }

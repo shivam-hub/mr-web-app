@@ -36,10 +36,8 @@ export default function AddUserSheet() {
             </Button>
           </SheetTrigger>
 
-          <SheetContent className="w-[800px] sm:w-[1040px]">
-          <ScrollArea className="h-screen">
-
-            <SheetHeader >
+          <SheetContent style={{ maxHeight: "100vh", overflowY: "auto" }}>
+            <SheetHeader>
               <SheetTitle className="text-2xl">Add new user</SheetTitle>
               <SheetDescription className="text-xs pt-2">
                 Select suitable option for adding a new user. Click Add when
@@ -97,27 +95,28 @@ export default function AddUserSheet() {
                         placeholder="Password"
                       />
                     </div>
+                    <Button type="submit">Add</Button>
                   </div>
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
                 <AccordionTrigger>Upload file</AccordionTrigger>
                 <AccordionContent>
-                  Upload your file here.
+                  Upload your excel here.
+                  <div className="grid w-full max-w-sm items-center gap-1.5 mt-5">
+                    <Input id="file" type="file" />
+                  </div>
+                  <Button type="submit" className="my-5">
+                    Add
+                  </Button>
                 </AccordionContent>
               </AccordionItem>
-              
             </Accordion>
 
             <SheetFooter className="pt-5">
-              <SheetClose asChild>
-                <Button type="submit">Add</Button>
-              </SheetClose>
+              <SheetClose asChild></SheetClose>
             </SheetFooter>
-          </ScrollArea>
-
           </SheetContent>
-
         </Sheet>
       </div>
     </>

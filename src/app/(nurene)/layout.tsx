@@ -13,6 +13,8 @@ export default function DefaultLayout({ children }: {
             <header>
                 <NavigationMenu></NavigationMenu>
             </header>
+
+           
             {children}
         </main>
     )

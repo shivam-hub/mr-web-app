@@ -58,12 +58,7 @@ export function DataTableToolbar<TData>({
       </div>
       <DataTableViewOptions table={table} />
       <div>
-      {/* <Button 
-        onClick={}
-       size="icon" 
-       className="rounded-full h-7 w-7 text-lg mx-4 font-medium">
-      <Link href=''>+</Link>
-      </Button> */}
+     
       <AddUserSheet/>
       </div>
 

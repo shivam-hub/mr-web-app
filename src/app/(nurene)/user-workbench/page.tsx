@@ -42,10 +42,12 @@ const UserWorkbench = () => {
         return <Progress value={progress} />;
     }
 
-    return (
+    return (<>
+      <h1 className="text-3xl font-bold ml-20 mt-10 text-emerald-900">Manage Users</h1>
         <div className="container mx-auto py-10">
             <DataTable columns={columns} data={data} />
-        </div>
+        </div></>
+      
     );
 };
 

@@ -45,9 +45,14 @@ const UserWorkbench = () => {
     }
 
     return (
-        <div className="container mx-auto py-10">
-            <DataTable columns={columns} data={data} />
-        </div>
+        <>
+             <h1 className="text-3xl font-bold ml-20 mt-10 text-emerald-900">Manage Doctors</h1>
+
+<div className="container mx-auto py-10">
+    <DataTable columns={columns} data={data} />
+</div>
+        </>
+ 
     );
 }
 
