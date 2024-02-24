@@ -11,17 +11,18 @@ export default function NavigationMenu() {
 
     return (
       <>
-        <nav className="bg-green-400">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav className="bg-primary">
+          {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> */}
+          <div className="ml-10 mr-10 mx-auto">
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
-                <div className="flex-shrink-0">
+                <div className="flex items-center">
                   <a href="/reports-workbench" className="text-white">
                     <Image
-                      src="/public/nurene_logo.png"
+                      src="/images/logo_sm.png"
                       alt="Logo" 
-                      width={500} 
-                      height={300} 
+                      width={50} 
+                      height={80} 
                     />
                   </a>
                 </div>
@@ -54,43 +55,3 @@ export default function NavigationMenu() {
       </>
     );
 }
-
-// import {
-//     NavigationMenu,
-//     NavigationMenuItem,
-//     NavigationMenuLink,
-//     NavigationMenuList,
-//     NavigationMenuIndicator,
-// } from "@/components/ui/navigation-menu";
-// import Link from "next/link";
-
-// export default function DefaultNavigationMenu() {
-//     return (
-//         <div className="relative">
-//             <NavigationMenu className="absolute top-0 right-0">
-//                 <NavigationMenuList className="flex space-x-4">
-//                     <NavigationMenuItem>
-//                         <Link href="/nurene/doctor-workbench" legacyBehavior passHref>
-//                             <NavigationMenuLink>Doctors</NavigationMenuLink>
-//                         </Link>
-//                         <NavigationMenuIndicator />
-//                     </NavigationMenuItem>
-//                     <NavigationMenuItem>
-//                         <Link href="/nurene/user-workbench" legacyBehavior passHref>
-//                             <NavigationMenuLink>Users</NavigationMenuLink>
-//                         </Link>
-//                         <NavigationMenuIndicator />
-//                     </NavigationMenuItem>
-//                     <div className="mr-10">
-//                         <NavigationMenuItem>
-//                             <Link href="/nurene/reports-workbench" legacyBehavior passHref>
-//                                 <NavigationMenuLink>Reports</NavigationMenuLink>
-//                             </Link>
-//                             <NavigationMenuIndicator />
-//                         </NavigationMenuItem>
-//                     </div>
-//                 </NavigationMenuList>
-//             </NavigationMenu>
-//         </div>
-//     );
-// }

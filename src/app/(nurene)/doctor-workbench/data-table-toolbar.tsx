@@ -30,7 +30,7 @@ export function DataTableToolbar<TData>({
           }
           className="h-8 w-[150px] lg:w-[250px]"
         />
-        {table.getColumn("region") && (
+        {/* {table.getColumn("region") && (
           <DataTableFacetedFilter
             column={table.getColumn("region")}
             title="Region"
@@ -43,7 +43,7 @@ export function DataTableToolbar<TData>({
             title="Speciality"
             options={statuses}
           />
-        )}
+        )} */}
         {isFiltered && (
           <Button
             variant="ghost"

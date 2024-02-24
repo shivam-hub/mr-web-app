@@ -25,7 +25,7 @@ const UserWorkbench = () => {
             }, 500);
 
             try {
-                const doctors = await await fetch('api/doctors/getDoctor');
+                const doctors = await fetch('api/doctors/getDoctor');
                 setData(await doctors.json());  
                 setDataLoaded(true);
             } catch (error) {

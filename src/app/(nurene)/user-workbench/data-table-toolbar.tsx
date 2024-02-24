@@ -24,14 +24,14 @@ export function DataTableToolbar<TData>({
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
         <Input
-          placeholder="Filter tasks..."
+          placeholder="MR Name"
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("name")?.setFilterValue(event.target.value)
           }
           className="h-8 w-[150px] lg:w-[250px]"
         />
-        {table.getColumn("userId") && (
+        {/* {table.getColumn("userId") && (
           <DataTableFacetedFilter
             column={table.getColumn("userId")}
             title="User Id"
@@ -44,7 +44,7 @@ export function DataTableToolbar<TData>({
             title="Priority"
             options={priorities}
           />
-        )}
+        )} */}
         {isFiltered && (
           <Button
             variant="ghost"
@@ -58,11 +58,8 @@ export function DataTableToolbar<TData>({
       </div>
       <DataTableViewOptions table={table} />
       <div>
-     
-      <AddUserSheet/>
+      {/* <AddUserSheet/> */}
       </div>
-
-
     </div>
   )
 }
