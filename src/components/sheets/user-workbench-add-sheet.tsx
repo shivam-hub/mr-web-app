@@ -31,6 +31,16 @@ export default function AddUserSheet() {
   const handleSelectPerson = (person: string) => {
     setSelectedPerson(person);
   };
+import { useState } from "react";
+
+export default function AddUserSheet() {
+  const [selectedUserType, setSelectedUserType] = useState<string>("");
+
+
+  const handleUserType = (userType: string) => {
+    setSelectedUserType(userType);
+    console.log(userType);
+  }
 
   return (
     <>
@@ -63,7 +73,7 @@ export default function AddUserSheet() {
 
                     <Separator />
 
-                    <RadioGroupForm />
+                    <RadioGroupForm onSelectUserType={handleUserType}/>
                     <div className=" items-center gap-4 justify-between flex-col">
                       <Input
                         id="name"
