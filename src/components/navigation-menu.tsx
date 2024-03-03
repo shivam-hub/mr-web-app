@@ -3,12 +3,21 @@
 import Link from "next/link";
 import React, { useState } from "react"
 import Image from "next/image";
+import { cookies } from "next/headers"; 
+import { useRouter } from "next/router";
+
+
 export default function NavigationMenu() {
-    // const [isClick, setIsClick] = useState(false);
 
-    // const toggleNavBar = (): void => {
-    //     setIsClick(!isClick);
+    const cookieStore = cookies();
+    const router = useRouter();
+    const handleLogout = () => {
+      cookieStore.delete("token");
+      cookieStore.delete("user");
 
+      router.replace("/login");
+    };
+  
     return (
       <>
         <nav className="bg-primary">
@@ -19,10 +28,10 @@ export default function NavigationMenu() {
                 <div className="flex items-center">
                   <a href="/reports-workbench" className="text-white">
                     <Image
-                      src="/images/logo_sm.png"
+                      src="/images/logo.png"
                       alt="Logo" 
-                      width={50} 
-                      height={80} 
+                      width={130} 
+                      height={220} 
                     />
                   </a>
                 </div>
@@ -47,6 +56,7 @@ export default function NavigationMenu() {
                   >
                     Reports
                   </a>
+                  <button onClick={handleLogout}>Logout</button>
                 </div>
               </div>
             </div>

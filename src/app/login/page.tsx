@@ -15,6 +15,7 @@ import * as z from "zod";
 import * as React from "react";
 import { cn, startRefreshInterval } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
@@ -63,10 +64,21 @@ function Login({ }: LoginFormProps) {
   }
 
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div className="min-h-screen flex justify-center items-center"
+    style={{
+      
+      backgroundImage: "url('/images/greenbg.jpg')",
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    }}>
       <Card className="w-80 mx-auto md:w-96 lg:w-104 max-h-96 p-8 bg-white rounded shadow-md">
         <CardHeader className="flex justify-center items-center">
-          <CardTitle className="font-bold text-2xl">Login</CardTitle>
+          <CardTitle className="font-bold text-2xl"> <Image
+                      src="/images/logo.png"
+                      alt="Logo" 
+                      width={150} 
+                      height={280} 
+                    /></CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onLoginClicked)}>
