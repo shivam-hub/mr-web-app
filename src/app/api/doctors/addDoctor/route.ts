@@ -1,9 +1,9 @@
 import { cookies } from "next/headers"; 
 
-export async function GET(request : Request){
+export async function POST(request: Request) {
     const cookieStore = cookies();
     const token = cookieStore.get('token')?.value ?? '';
-    
+
     if(token == ''){
         const res = {
             success : true,
@@ -15,18 +15,23 @@ export async function GET(request : Request){
     }
 
     try{
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/Doctor/getAllDoctors`, {
-            method: "GET",
+        const body = await request.json();
+        console.log(body);
+
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/Doctor/create`, {
+            method: "POST",
             headers: {
-                "Authorization": `Bearer ${token}`
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json",
             },
-            next:{
-                revalidate: 60
-            }
+            body: JSON.stringify(body)
         });
 
+        console.log(res);
+        
+
         if (!res.ok) {
-            throw new Error("Failed to fetch doctors");
+            throw new Error("Failed to add doctors");
         }
 
         const data = await res.json();
@@ -35,7 +40,7 @@ export async function GET(request : Request){
         });
     }
     catch(err){
-        return new Response(JSON.stringify([]), {
+        return new Response(JSON.stringify({}), {
             status: 500
         })
     }

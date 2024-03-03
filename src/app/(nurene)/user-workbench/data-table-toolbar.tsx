@@ -58,7 +58,7 @@ export function DataTableToolbar<TData>({
       </div>
       <DataTableViewOptions table={table} />
       <div>
-      {/* <AddUserSheet/> */}
+      <AddUserSheet/>
       </div>
     </div>
   )

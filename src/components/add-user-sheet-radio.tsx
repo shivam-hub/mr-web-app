@@ -12,7 +12,6 @@ export function RadioGroupForm() {
         <RadioGroupItem value="comfortable" id="r2" />
         <Label htmlFor="r2">Management</Label>
       </div>
-    
     </RadioGroup>
   )
 }

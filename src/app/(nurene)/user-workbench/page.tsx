@@ -4,12 +4,14 @@ import React, { useEffect, useState } from "react";
 import { UserCol, columns } from "./columns";
 import { DataTable } from "./data-table";
 import { Progress } from "@/components/ui/progress"
+import { useRouter } from 'next/navigation';
 
 const UserWorkbench = () => {
     const [data, setData] = useState<UserCol[]>([]);
     const [dataLoaded, setDataLoaded] = useState<boolean>(false);
     const [progress, setProgress] = useState(10);
-
+    const router = useRouter();
+    
     useEffect(() => {
         const fetchData = async () => {
             const timer = setInterval(() => {
@@ -23,7 +25,10 @@ const UserWorkbench = () => {
             }, 500);
 
             try {
-                const users = await fetch('api/users/getUser');
+                const users = await fetch(`api/users/getUser?_=${Date.now()}`);
+                if(users.status === 401){
+                    router.replace('/login')
+                }
                 setData(await users.json());
                 setDataLoaded(true);
             } catch (error) {

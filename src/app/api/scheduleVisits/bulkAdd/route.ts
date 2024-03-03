@@ -1,7 +1,6 @@
-import { startRefreshInterval } from "@/lib/utils";
 import { cookies } from "next/headers";
 
-export async function GET(request: Request) {
+export async function POST(request: Request) {
   const cookieStore = cookies();
   const token = cookieStore.get("token")?.value ?? "";
 
@@ -15,18 +14,18 @@ export async function GET(request: Request) {
     });
   }
   try {
+    const payload = await request.json();
     const res = await fetch(
       `${
         process.env.NEXT_PUBLIC_BASE_URL
-      }/api/Users/getAllUser?_=${Date.now()}`,
+      }/api/ScheduleVisit/bulkAdd?_=${Date.now()}`,
       {
-        method: "GET",
+        method: "POST",
+        body: JSON.stringify(payload),
         headers: {
           Authorization: `Bearer ${token}`,
-        },
-        next: {
-          revalidate: 30,
-        },
+          "Content-Type": "application/json",
+        }
       }
     );
 
@@ -37,12 +36,13 @@ export async function GET(request: Request) {
             status: 401
         })
       } else {
-        throw new Error("Failed to fetch users");
+        throw new Error("Failed to schedule visits");
       }
     }
 
-    const users = await res.json();
-    return new Response(JSON.stringify(users), {
+    const resp = await res.json();
+
+    return new Response(JSON.stringify(resp), {
       status: 200,
     });
   } catch (err) {

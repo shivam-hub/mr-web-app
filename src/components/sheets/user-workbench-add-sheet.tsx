@@ -17,8 +17,6 @@ import {
 } from "@/components/ui/accordion";
 
 import { Separator } from "@/components/ui/separator";
-import { ScrollArea } from "@/components/ui/scroll-area"
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -106,7 +104,7 @@ export default function AddUserSheet() {
                   <div className="grid w-full max-w-sm items-center gap-1.5 mt-5">
                     <Input id="file" type="file" />
                   </div>
-                  <Button type="submit" className="my-5">
+                  <Button type="submit">
                     Add
                   </Button>
                 </AccordionContent>
