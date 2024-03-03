@@ -8,6 +8,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { useState } from "react";
 
 import {
   Accordion,
@@ -21,8 +22,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroupForm } from "@/components/add-user-sheet-radio";
+import { PersonComboboxForm } from "../reports-to-combobox";
 
 export default function AddUserSheet() {
+ 
+  const [selectedPerson, setSelectedPerson] = useState<string>("");
+
+  const handleSelectPerson = (person: string) => {
+    setSelectedPerson(person);
+  };
+
   return (
     <>
       <div>
@@ -92,6 +101,22 @@ export default function AddUserSheet() {
                         className="w-80 mt-5 ml-1"
                         placeholder="Password"
                       />
+                    </div>
+
+                    <Label htmlFor="credentials" className="text-lg">
+                      Other details
+                    </Label>
+
+                    <Separator />
+                    <div className="items-center gap-4 justify-between flex-col">
+                      <Input
+                        id="territory"
+                        className="w-80 mt-5 ml-1"
+                        placeholder="Territory"
+                      />
+
+                    <PersonComboboxForm onSelectPerson={handleSelectPerson} />
+
                     </div>
                     <Button type="submit">Add</Button>
                   </div>
