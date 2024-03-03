@@ -65,7 +65,30 @@ export const columns: ColumnDef<UserCol>[] = [
           },
     },
     {
-        accessorKey: 'password',
+      accessorKey: 'username',
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title="Username" />
+      ),
+      cell: ({ row }) => (
+        <div className="w-[80px]">{row.getValue("username")}</div>
+      ),
+      enableHiding: true,
+      enableSorting: true,
+  },
+    {
+        accessorKey: 'password',  
         header: 'Password'
-    }
+    },
+
+    {
+      accessorKey: 'reportsTo',
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title="Reports to" />
+      ),
+      cell: ({ row }) => (
+        <div className="w-[80px]">{row.getValue("reportsTo")}</div>
+      ),
+      enableHiding: true,
+      enableSorting: true,
+  },
 ]

@@ -29,7 +29,22 @@ const UserWorkbench = () => {
                 if(users.status === 401){
                     router.replace('/login')
                 }
-                setData(await users.json());
+
+                const res= await users.json();
+                const user = res.map((data: any)=> ({
+                    username: data?.username ?? '',
+                    password: data?.password ?? '',
+                    userId: data?.userId ?? '',
+                    contactNo: data?.contactNo ?? '',
+                    email: data?.email ?? '',
+                    
+                    name: data?.name ?? '',
+                    reportsTo : data?.reportsTo?.name ?? '',
+                    userType : data?.userType ?? '',
+                    territory : data?.territory ?? '',
+                })
+                );
+                setData(user);
                 setDataLoaded(true);
             } catch (error) {
                 console.error("Error fetching data:", error);

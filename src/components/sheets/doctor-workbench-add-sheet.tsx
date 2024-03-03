@@ -258,7 +258,7 @@ export default function AddDoctorSheet({}: AddDoctorFormProps) {
                       </div>
                     </div>
                     <div>
-                      <button type="submit" className={cn(buttonVariants())} disabled={isLoading}>
+                      <button type="submit" className={cn(buttonVariants())}  style={{ margin: '10px', width: '70px' }}disabled={isLoading}>
                         Add
                       </button>
                     </div>
@@ -286,7 +286,7 @@ export default function AddDoctorSheet({}: AddDoctorFormProps) {
                   </div>
                   <Button
                     type="submit"
-                    className="my-5"
+                    style={{ margin: '10px', width: '70px' }}
                     onClick={handleOnUploadBtnClick}
                   >
                     Upload
