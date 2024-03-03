@@ -21,8 +21,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroupForm } from "@/components/add-user-sheet-radio";
+import { useState } from "react";
 
 export default function AddUserSheet() {
+  const [selectedUserType, setSelectedUserType] = useState<string>("");
+
+
+  const handleUserType = (userType: string) => {
+    setSelectedUserType(userType);
+    console.log(userType);
+  }
+
   return (
     <>
       <div>
@@ -54,7 +63,7 @@ export default function AddUserSheet() {
 
                     <Separator />
 
-                    <RadioGroupForm />
+                    <RadioGroupForm onSelectUserType={handleUserType}/>
                     <div className=" items-center gap-4 justify-between flex-col">
                       <Input
                         id="name"
